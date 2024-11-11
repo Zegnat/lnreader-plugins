@@ -5,7 +5,7 @@ import { defaultCover } from '@libs/defaultCover';
 
 class OldDDLPlugin implements Plugin.PluginBase {
   id = 'old.DDL.com';
-  name = 'Divine Dao Library';
+  name = 'Divine Dao Library Old';
   site = 'https://www.divinedaolibrary.com/';
   version = '1.0.1';
   icon = 'src/en/divinedaolibrary/icon.png';
