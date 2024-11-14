@@ -5,7 +5,7 @@ import { Plugin } from '@typings/plugin';
 import { load as parseHTML } from 'cheerio';
 
 class DDLPlugin implements Plugin.PluginBase {
-  id = 'DDL.com';
+  id = 'net.zegnat.lnreader.ddl';
   name = 'Divine Dao Library';
   site = 'https://www.divinedaolibrary.com/';
   version = '1.1.0';
