@@ -11,6 +11,21 @@ class DDLPlugin implements Plugin.PluginBase {
   version = '1.1.0';
   icon = 'src/en/divinedaolibrary/icon.png';
 
+  filters = {
+    category: {
+      type: FilterTypes.CheckboxGroup,
+      label: 'State',
+      value: ['Completed', 'Translating', 'Lost in Voting Poll', 'Dropped'],
+      options: [
+        { label: 'Completed', value: 'Completed' },
+        { label: 'Translating', value: 'Translating' },
+        { label: 'Lost in Voting Poll', value: 'Lost in Voting Poll' },
+        { label: 'Dropped', value: 'Dropped' },
+        { label: 'Personally Written', value: 'Personally Written' },
+      ],
+    },
+  } satisfies Filters;
+
   /**
    * Safely extract the pathname from any URL on {@link site}. Check the root
    * site as there are novels linking off-site (to Patreon).
@@ -21,12 +36,11 @@ class DDLPlugin implements Plugin.PluginBase {
     if (!url.startsWith(this.site)) {
       return undefined;
     }
-    try {
-      const parsed = new URL(url, this.site);
-      return parsed.pathname.replace(/(^\/+|\/+$)/g, '');
-    } catch (_) {
+    const trimmed = url.substring(this.site.length).replace(/(^\/+|\/+$)/g, '');
+    if (trimmed.length === 0) {
       return undefined;
     }
+    return trimmed;
   }
 
   /**
@@ -190,9 +204,12 @@ class DDLPlugin implements Plugin.PluginBase {
   }
 
   async popularNovels(
-    _pageNo: number,
+    pageNo: number,
     options: Plugin.PopularNovelsOptions<Filters>,
   ): Promise<Plugin.NovelItem[]> {
+    if (pageNo !== 1) {
+      return [];
+    }
     if (options.showLatestNovels) {
       return await this.asyncMap(
         await this.latestNovels(),
@@ -226,8 +243,11 @@ class DDLPlugin implements Plugin.PluginBase {
 
   async searchNovels(
     searchTerm: string,
-    _pageNo: number,
+    pageNo: number,
   ): Promise<Plugin.NovelItem[]> {
+    if (pageNo !== 1) {
+      return [];
+    }
     const novels = (await this.allNovels()).filter(novel => {
       return novel.name
         .toLocaleLowerCase()
@@ -235,25 +255,6 @@ class DDLPlugin implements Plugin.PluginBase {
     });
     return await this.asyncMap(novels, this.grabNovel.bind(this));
   }
-
-  resolveUrl(path: string, _isNovel?: boolean): string {
-    return this.site + path;
-  }
-
-  filters = {
-    category: {
-      type: FilterTypes.CheckboxGroup,
-      label: 'State',
-      value: ['Completed', 'Translating', 'Lost in Voting Poll', 'Dropped'],
-      options: [
-        { label: 'Completed', value: 'Completed' },
-        { label: 'Translating', value: 'Translating' },
-        { label: 'Lost in Voting Poll', value: 'Lost in Voting Poll' },
-        { label: 'Dropped', value: 'Dropped' },
-        { label: 'Personally Written', value: 'Personally Written' },
-      ],
-    },
-  } satisfies Filters;
 }
 
 export default new DDLPlugin();
