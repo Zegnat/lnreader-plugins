@@ -1,0 +1,29 @@
+[
+	{
+		"id": "net.zegnat.lnreader.ddl",
+		"name": "Divine Dao Library",
+		"site": "https://www.divinedaolibrary.com/",
+		"lang": "English",
+		"version": "1.1.1",
+		"url": "https://raw.githubusercontent.com/Zegnat/lnreader-plugins/plugins/v3.0.0/.js/src/plugins/english/divinedaolibrary.js",
+		"iconUrl": "https://raw.githubusercontent.com/Zegnat/lnreader-plugins/plugins/v3.0.0/public/static/src/en/divinedaolibrary/icon.png"
+	},
+	{
+		"id": "net.zegnat.lnreader.hostednovel",
+		"name": "Hosted Novel",
+		"site": "https://hostednovel.com/",
+		"lang": "English",
+		"version": "0.1.0",
+		"url": "https://raw.githubusercontent.com/Zegnat/lnreader-plugins/plugins/v3.0.0/.js/src/plugins/english/hostednovel.js",
+		"iconUrl": "https://raw.githubusercontent.com/Zegnat/lnreader-plugins/plugins/v3.0.0/public/static/siteNotAvailable.png"
+	},
+	{
+		"id": "net.zegnat.lnreader.wanderinginn",
+		"name": "The Wandering Inn",
+		"site": "https://wanderinginn.com/",
+		"lang": "English",
+		"version": "1.0.0",
+		"url": "https://raw.githubusercontent.com/Zegnat/lnreader-plugins/plugins/v3.0.0/.js/src/plugins/english/wanderinginn.js",
+		"iconUrl": "https://raw.githubusercontent.com/Zegnat/lnreader-plugins/plugins/v3.0.0/public/static/src/en/wanderinginn/icon.png"
+	}
+]
